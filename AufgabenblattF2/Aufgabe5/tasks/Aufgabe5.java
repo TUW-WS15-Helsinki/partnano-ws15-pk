@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 /*
     Aufgabe5) Vervollständigung von Methoden
 
@@ -20,10 +22,10 @@ public class Aufgabe5 {
     // Returns the sum of all elements with an index smaller than or equal to x in the array;
     // 0 is returned if the reference to the array equals null or x is not within the index range of the array.
     private static int sum(int[] array, int x) {
-        if (true /* TODO: modify expression;  array[x] is accessible */) {
-            return (0 /* TODO: modify expression */);
+        if (x >= array.length || x < 0) {
+            return (0);
         }
-        return sum(array, (-1 /* TODO: modify expression*/)) + (-1 /* TODO: modify expression */);
+        return sum(array, (x-1)) + (array[x]);
     }
 
     // Returns the non-negative difference between the largest and smallest element in the two-dimensional array;
@@ -31,34 +33,34 @@ public class Aufgabe5 {
     private static int span(int[][] array) {
         boolean empty = true;
         int min = 0, max = 0;
-        if (true /* TODO: modify expression; array is null */) {
+        if (array.length <= 0) {
             return -1;
         }
         for (int[] subarray : array) {
-            if (true /* TODO: modify expression; any part of the array is null */) {
+            if (subarray.length <= 0) {
                 return -1;
             }
             for (int elem : subarray) {
                 if (empty) {
-                    min = max = (0 /* TODO: modify expression; first values */);
+                    min = max = elem;
                     empty = false;
                 } else if (elem < min) {
-                    (max /* TODO: modify expression; first values */) = elem;
+                    (min) = elem;
                 } else if (elem > max) {
-                    (min /* TODO: modify expression; first values */) = elem;
+                    (max) = elem;
                 }
             }
         }
-        return (-1 /* TODO: modify expression, the result */);
+        return (Math.abs(max - min));
     }
 
     // Fills the array with the first array.length prime numbers;
     // assumes that each array entry at an index below n is already correctly set.
     private static void primes(int[] array, int n) {
-        if (true /* TODO: modify expression; array exists (not null), but not all entries correctly set yet */) {
-            if (true /* TODO: modify expression; no array entry correctly set */) {
+        if (array.length > 0 && n < array.length) {
+            if (n == 0) {
                 array[0] = 2;
-                primes((null /* TODO: modify expression */), (-1 /* TODO: modify expression */));
+                primes((array), (n+1));
             } else {
                 int check = array[n - 1];
                 boolean isPrime;
@@ -70,14 +72,14 @@ public class Aufgabe5 {
                     }
                 } while (! isPrime);
                 array[n] = check;
-                primes((null /* TODO: modify expression */), (-1 /* TODO: modify expression */));
+                primes((array), (n+1));
             }
         }
     }
 
     // Returns an array containing the result of the division of x by y at index 0 and the remainder at index 1.
     private static int[] div(int x, int y) {
-        return (new int[]{ 0, 1 } /* TODO: modify expression */);
+        return (new int[]{ x/y, x%y });
     }
 
     // Prints the contents of array; just for testing, nothing to do.
@@ -99,6 +101,13 @@ public class Aufgabe5 {
 
     // Just for testing ...
     public static void main(String[] args) {
-        // Den Rumpf dieser Methode können Sie beliebig verändern.
+        int[] arr = {1, 2, 3, 4, 5, 6, 7, 8};
+        int[][] arr2d = {{2, 2}, {2, 3}, {3, 7}};
+
+        System.out.println(sum(arr, 5));
+        System.out.println(span(arr2d));
+        primes(arr, 0);
+        printArray(arr);
+        printArray(div(19, 5));
     }
 }

@@ -31,29 +31,60 @@
 public class Aufgabe1 {
 
     // What does rec compute?
+    // pascal's triangle, yay
     private static int rec(int x, int y) {
+        // if x equals y or if y 0, end
         if (x == y || y == 0) {
             return 1;
         }
+
+        // x has to be positive
         if (x < 0) {
             return rec(-x, y);
         }
+
+        // y has to be positive
         if (y < 0) {
             return rec(x, -y);
         }
+
+        // x has to be bigger than y
         if (x < y) {
             return rec(y, x);
         }
+
+
         return rec(x - 1, y - 1) + rec(x - 1, y);
     }
 
     // Does the same as rec, but is not recursive.
     private static int iter(int x, int y) {
-        return -1;  // Implementation is your task.
+        if(x < 0)
+            x = -x;
+        if(y < 0)
+            y = -y;
+        if(x < y) {
+            int tmp = x;
+            x = y;
+            y = tmp;
+        }
+
+        return fact(x)/(fact(y) * fact(x -y));
+    }
+
+    private static int fact(int x) {
+        int tmp = x--;
+        for(;x > 0; x--)
+            tmp *= x;
+
+        return tmp;
     }
 
     // Just for testing ...
     public static void main(String[] args) {
-        // Den Rumpf dieser Methode können Sie beliebig verändern.
+
+        System.out.println(iter(3, -8));
+        System.out.println(rec(3, -8));
+
     }
 }

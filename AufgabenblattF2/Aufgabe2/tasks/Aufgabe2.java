@@ -51,6 +51,22 @@ public class Aufgabe2 {
 
     // Just for testing ...
     public static void main(String[] args) {
-        // Den Rumpf dieser Methode können Sie beliebig verändern.
+        rec(4, 0);
+    }
+
+    private static int simple(int line) {
+        System.out.println((line+1) + " simple(" + line + ")");
+        return line;
+    }
+
+    private static int rec(int i, int line) {
+        System.out.println((line+1) + " rec(" + i + ", " + line + ")");
+        if (i > 0) {
+            line = rec(i - 1, line+1);
+            line = simple(line+1);
+            line = rec(i - 1, line+1);
+            return line;
+        }
+        return line;
     }
 }
