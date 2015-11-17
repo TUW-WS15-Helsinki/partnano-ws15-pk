@@ -82,8 +82,8 @@ public class Aufgabe3 {
 
             // go through array, check in which section the number goes and add to it
             int sec_num = 0;
-            for (int i = 0; i < arr.length; i++) {
-                sec_num = (int) (arr[i] / diff);
+            for (double i: arr) {
+                sec_num = (int) (i / diff);
                 sections[sec_num]++;
             }
 
@@ -123,7 +123,7 @@ public class Aufgabe3 {
 
         double[] ran = create_array(10);
 
-        print_array(ran, 13);
+        print_array(ran, 3);
         diff_array(ran);
     }
 }
